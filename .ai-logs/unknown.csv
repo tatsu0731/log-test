@@ -258,3 +258,77 @@ Server Component で初期データ取得し、`TodoList` と `TodoForm` を配�
 実装を進めるときは声をかけてください。","false"
 "2026-06-07 02:08:26 JST","unknown","","Claude CLI (Claude Code)","Create makefile for git hooks path configuration","今日の天気教えて","リアルタイムの天気情報にアクセスする手段がないため、お答えできません。天気予報アプリや検索エンジンでご確認ください。","false"
 "2026-06-07 02:08:52 JST","unknown","","Claude CLI (Claude Code)","Create makefile for git hooks path configuration","今日の天気は？","天気情報へのアクセス手段がないため、お答えできません。","false"
+"2026-06-07 02:10:48 JST","unknown","","Claude CLI (Claude Code)","Set up GitHub Copilot prompt logging system","webhookの設定の仕方教えて","## 手順
+
+### 1. Google スプレッドシートを新規作成
+
+[sheets.google.com](https://sheets.google.com) で空のスプレッドシートを作る（名前は何でもOK）。
+
+---
+
+### 2. Apps Script を開く
+
+スプレッドシートのメニューから
+
+**拡張機能 → Apps Script**
+
+---
+
+### 3. スクリプトを貼り付ける
+
+エディタに表示されているコードを全部消して、`.hooks/spreadsheet.gs` の内容をまるごとコピペして **保存（Ctrl+S）**。
+
+---
+
+### 4. デプロイする
+
+1. 右上の **「デプロイ」→「新しいデプロイ」**
+2. 歯車アイコン → **「ウェブアプリ」** を選択
+3. 以下のように設定：
+
+| 項目 | 設定値 |
+|---|---|
+| 実行ユーザー | **自分** |
+| アクセスできるユーザー | **全員（匿名を含む）** |
+
+4. **「デプロイ」** ボタンを押す
+5. Googleアカウントの認証を求められたら許可する
+6. 表示された **ウェブアプリのURL** をコピー
+
+URLはこんな形式：
+```
+https://script.google.com/macros/s/AKfycb.../exec
+```
+
+---
+
+### 5. config.json に貼り付ける
+
+`.hooks/config.json` を開いて：
+
+```json
+{
+  ""spreadsheet_webhook_url"": ""https://script.google.com/macros/s/AKfycb.../exec""
+}
+```
+
+コピーしたURLを `""""` の中に貼り付けて保存。
+
+---
+
+### 6. 動作確認
+
+```bash
+python3 .hooks/extract_ai_logs.py
+```
+
+`スプレッドシートに ○ 件を同期しました` と表示されればOK。スプレッドシートに「AIログ」シートが自動作成されて行が入っているはずです。","false"
+"2026-06-07 02:15:13 JST","unknown","","Claude CLI (Claude Code)","Create makefile for git hooks path configuration","今日の天気は？","天気情報は提供できません。天気予報サービスをご利用ください。","false"
+"2026-06-07 02:15:25 JST","unknown","","Claude CLI (Claude Code)","Create makefile for git hooks path configuration","どうやったらプログラミング上手くなる？","実際に手を動かして作ることが一番の近道です。具体的には：
+
+1. **小さなものを完成させる** — チュートリアルより、自分が使いたいものを作る
+2. **コードを読む** — OSS のコードを読んで、上手い人の書き方を真似る
+3. **デバッグを丁寧にやる** — なぜ動かないかを調べる習慣が力になる
+4. **レビューしてもらう** — 他人の目線でのフィードバックは独学では得られない
+
+量より質で、1 つのことを「なぜそう動くか」まで理解する癖をつけると伸びが早いです。","false"
