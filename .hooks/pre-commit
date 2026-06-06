@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# AI会話ログを自動収集するpre-commitフック
+# 対応: GitHub Copilot Chat / Claude CLI / OpenAI Codex
+
+HOOKS_DIR="$(cd "$(dirname "$0")" && pwd)"
+SCRIPT="$HOOKS_DIR/extract_ai_logs.py"
+
+if [ ! -f "$SCRIPT" ]; then
+  echo "[ai-logs] extract_ai_logs.py が見つかりません: $SCRIPT"
+  exit 0
+fi
+
+# Python3が使えるか確認
+if ! command -v python3 &>/dev/null; then
+  echo "[ai-logs] python3 が見つかりません。スキップします。"
+  exit 0
+fi
+
+python3 "$SCRIPT"
+
+# スクリプトが失敗してもコミット自体はブロックしない
+exit 0
