@@ -1,3 +1,3 @@
-# AIログファイルをPR差分で自動折りたたむ
-.ai-logs/*.md linguist-generated=true
-.ai-logs/*.md diff=nodiff
+# AIログCSVをPR差分で自動折りたたむ
+.ai-logs/*.csv linguist-generated=true
+.ai-logs/*.csv diff=nodiff
